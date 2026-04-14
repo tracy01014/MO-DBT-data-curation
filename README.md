@@ -27,7 +27,7 @@ Groups DICOM records and extracts relevant attributes to generate standardized t
   * **View:** `MLO`, `CC`
 
 ### 2. Parameters Configuration (`parameters`)
-* **Actions:** Lists all possible parameters in their respective files (e.g., Study = Cancer).
+* **Actions:** Lists all possible parameters in their respective files.
 
 ### 3. Interfile Duplicates Filter (`interfile_duplicates_<EHR>`)
 Filters out duplicate records across different files for specific EHR sources.
