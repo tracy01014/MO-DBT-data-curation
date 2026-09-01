@@ -4,14 +4,21 @@ This repository contains the pipeline for curating the MO-DBT dataset. The curat
 
 ## Pipeline Steps
 
+### (Optional) 0. Image Folder Parsing (`parse_image_folder`)
+This script parses the image folder structure and extracts relevant metadata to generate standardized tags.
+
+* **Outputs:**
+  *`P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/R3Data/dicomtocsv_series_{date}.xlsx`
+
 ### 1. DICOM Tag Processing (`dicom_tag`)
+#### (Optional) 1. DICOM Tag Processing (`dicom_tag_v2`): for processing multi-part DICOM series files (construct from image folder directly)
 Groups DICOM records and extracts relevant attributes to generate standardized tags.
 
 * **Inputs:**
-  * `P:/Dataset/R3Data/dicomtocsv_series.csv`
-  * `P:/Dataset/R3Data/dicomtocsv_study.csv`
+  * `P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/R3Data/dicomtocsv_series.csv`
+  * `P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/R3Data/dicomtocsv_study.csv`
 * **Outputs:**
-  * `P:/Dataset/MO-DBT-data-curation/dicom_tag.xlsx`
+  * `P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/dicom_tag.xlsx`
 
 **Actions:**
 * Combines the two input files and groups by `PatientID`.
