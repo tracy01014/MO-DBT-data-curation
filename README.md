@@ -4,14 +4,40 @@ This repository contains the pipeline for curating the MO-DBT dataset. The curat
 
 ## Pipeline Steps
 
+### ⚠️ **<span style="color:red">Warning:</span>** 
+* Route Optional 0 and Optional 1 (if you don't have dicom series and study files)
+* Route 1 (if you have dicom series and study files)
+
 ### (Optional) 0. Image Folder Parsing (`parse_image_folder`)
 This script parses the image folder structure and extracts relevant metadata to generate standardized tags.
 
 * **Outputs:**
   *`P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/R3Data/dicomtocsv_series_{date}.xlsx`
 
+### (Optional) 1. DICOM Tag Processing (`dicom_tag_v2`): 
+For processing multi-part DICOM series files (construct from image folder directly).
+Groups DICOM records and extracts relevant attributes to generate standardized tags.
+
+* **Inputs:**
+  * `P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/R3Data/dicomtocsv_series_{date}.csv`
+* **Outputs:**
+  * `P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/dicom_tag_v2.xlsx`
+
+**Actions:**
+* Combines the two input files and groups by `PatientID`.
+* Calculates `PatientAge` at the accession visit.
+* Renames columns for consistency:
+  * `PatientID` $\rightarrow$ `PATIENT_STUDY_ID`
+  * `AccessionNumber` $\rightarrow$ `ACCESSION_NUMBER`
+  * `PatientBirthDate` $\rightarrow$ `BIRTH_DATE`
+* Adds standardized tags:
+  * **Study:** `SCRRE`, `DIAG`
+  * **Side:** `R`, `L`
+  * **Series:** `DBT`, `IN2D`, `C VIEW`, `SECURE`
+  * **View:** `MLO`, `CC`, `SIO`, `LM`, `ML`, `XCCL`
+
 ### 1. DICOM Tag Processing (`dicom_tag`)
-#### (Optional) 1. DICOM Tag Processing (`dicom_tag_v2`): for processing multi-part DICOM series files (construct from image folder directly)
+
 Groups DICOM records and extracts relevant attributes to generate standardized tags.
 
 * **Inputs:**
@@ -31,7 +57,7 @@ Groups DICOM records and extracts relevant attributes to generate standardized t
   * **Study:** `SCRRE`, `DIAG`
   * **Side:** `R`, `L`
   * **Series:** `DBT`, `IN2D`, `C VIEW`, `SECURE`
-  * **View:** `MLO`, `CC`
+  * **View:** `MLO`, `CC`, `SIO`, `LM`, `ML`, `XCCL`
 
 ### 2. Parameters Configuration (`parameters`)
 * **Actions:** Lists all possible parameters in their respective files.
@@ -64,6 +90,22 @@ Extracts the eligible MO cancer cohort based on the curated data.
 * **Outputs:**
   * `P:/Dataset/MO-DBT-data-curation/Cancer/mo_cancer_cohort.xlsx`
   * `P:/Dataset/MO-DBT-data-curation/Cancer/mo_cancer_cohort_dbt.xlsx`
+
+**Actions:**
+* Locates `INDEX` and `INDEX-1` findings.
+* Filters to extract the eligible MO cancer cohort.
+
+### (Optional) 5. MO Cancer Cohort Extraction (`extract_mo_cancer`)
+Extracts the eligible MO cancer cohort based on the curated data.
+
+* **Inputs:**
+  * `P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/dicom_tag_v2.xlsx`
+  * `P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/Cancer/Cleaned/enteredit_findings.xlsx`
+  * `P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/Cancer/Cleaned/pathology.xlsx`
+* **Outputs:**
+  * `P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/Cancer/cancer_cohort.xlsx` 
+    * Intermediate output, cancer cohort link with BI-RADS, pathology, and constrain to patients with DBT images
+  * `P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/Cancer/mo_cancer_cohort.xlsx`
 
 **Actions:**
 * Locates `INDEX` and `INDEX-1` findings.
