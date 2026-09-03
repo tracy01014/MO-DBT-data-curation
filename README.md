@@ -15,15 +15,15 @@ Filters out duplicate records across different files for specific EHR sources.
 * **Outputs:**
   * `P:/Dataset/MO-DBT-data-curation/Cancer/Cleaned/<EHR>`
 
-**Actions:**
-* Focuses only on duplicates *between* files, ignoring duplicates *within* a single file.
-* Only processes parameters listed in the "parameters of interest".
+* **Actions:**
+  * Focuses only on duplicates *between* files, ignoring duplicates *within* a single file.
+  * Only processes parameters listed in the "parameters of interest".
 
 ### 3. Image Folder Parsing (`parse_image_folder`)
 This script parses the image folder structure and extracts relevant metadata to generate standardized tags.
 
 * **Outputs:**
-  *`P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/R3Data/dicomtocsv_series_{date}.xlsx`
+  * `P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/R3Data/dicomtocsv_series_{date}.xlsx`
 
 ### 4. DICOM Tag Processing (`dicom_tag`): 
 For processing multi-part DICOM series files (construct from image folder directly).
