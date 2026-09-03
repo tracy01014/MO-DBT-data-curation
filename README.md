@@ -32,7 +32,7 @@ Groups DICOM records and extracts relevant attributes to generate standardized t
 * **Inputs:**
   * `P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/R3Data/dicomtocsv_series_{date}.csv`
 * **Outputs:**
-  * `P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/dicom_tag_v2.xlsx`
+  * `P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/dicom_tag.xlsx`
 
 * **Actions:**
   * Combines the two input files and groups by `PatientID`.
@@ -56,7 +56,7 @@ Need to follow these steps if you only have image folder and don't have dicom se
 Extracts the eligible MO cancer cohort based on the curated data.
 
 * **Inputs:**
-  * `P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/dicom_tag_v2.xlsx`
+  * `P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/dicom_tag.xlsx`
   * `P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/Cancer/Cleaned/enteredit_findings.xlsx`
   * `P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/Cancer/Cleaned/pathology.xlsx`
 * **Outputs:**
