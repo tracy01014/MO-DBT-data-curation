@@ -52,7 +52,7 @@ Groups DICOM records and extracts relevant attributes to generate standardized t
 ### ⚠️ **<span style="color:red">Warning:</span>** 
 Need to follow these steps if you only have image folder and don't have dicom series and study files.
 
-### 1. MO Cancer Extraction (`extract_mo_cancer`, OR `extract_mo_cancer_time_var`)
+### 1. MO Cancer Extraction (`extract_mo_cancer`)
 Extracts the eligible MO cancer cohort based on the curated data.
 
 * **Inputs:**
