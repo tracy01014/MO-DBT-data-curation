@@ -73,6 +73,6 @@ def parse_folder_structure(root_path):
 
 
 # Usage
-root_path = r"J:\Testing\jlee\MO_DBT\DICOM_data_and_summaries_882GB"
+root_path = r"J:\Testing\jlee\MO_DBT\1.16GB_Tomos_group_10"
 df_folders = parse_folder_structure(root_path)
-df_folders.to_excel("P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/R3Data/dicomtocsv_series_20250527.xlsx", index=False)
+df_folders.to_excel("P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/Dicom/dicomtocsv_series_batch_9.xlsx", index=False)
