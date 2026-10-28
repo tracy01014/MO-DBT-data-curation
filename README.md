@@ -23,16 +23,16 @@ Filters out duplicate records across different files for specific EHR sources.
 This script parses the image folder structure and extracts relevant metadata to generate standardized tags.
 
 * **Outputs:**
-  * `P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/R3Data/dicomtocsv_series_{date}.xlsx`
+  * `P:/Dataset/MO-DBT-data-curation/R3Data/dicomtocsv_series_{date}.xlsx`
 
 ### 4. DICOM Tag Processing (`dicom_tag`): 
 For processing multi-part DICOM series files (construct from image folder directly).
 Groups DICOM records and extracts relevant attributes to generate standardized tags.
 
 * **Inputs:**
-  * `P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/R3Data/dicomtocsv_series_{date}.csv`
+  * `P:/Dataset/MO-DBT-data-curation/R3Data/dicomtocsv_series_batch_{batch_number}.csv`
 * **Outputs:**
-  * `P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/dicom_tag.xlsx`
+  * `P:/Dataset/MO-DBT-data-curation/dicom_tag.xlsx`
 
 * **Actions:**
   * Combines the two input files and groups by `PatientID`.
@@ -56,15 +56,15 @@ Need to follow these steps if you only have image folder and don't have dicom se
 Extracts the eligible MO cancer cohort based on the curated data.
 
 * **Inputs:**
-  * `P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/dicom_tag.xlsx`
-  * `P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/Cancer/Cleaned/enteredit_findings.xlsx`
-  * `P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/Cancer/Cleaned/pathology.xlsx`
+  * `P:/Dataset/MO-DBT-data-curation/dicom_tag.xlsx`
+  * `P:/Dataset/MO-DBT-data-curation/Cancer/Cleaned/enteredit_findings.xlsx`
+  * `P:/Dataset/MO-DBT-data-curation/Cancer/Cleaned/pathology.xlsx`
 * **Outputs:**
-  * `P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/Cancer/cancer_cohort.xlsx` 
+  * `P:/Dataset/MO-DBT-data-curation/Cancer/cancer_cohort.xlsx` 
     * Intermediate output, cancer cohort link with BI-RADS, pathology, and constrain to patients with DBT images
-  * `P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/Cancer/mo_cancer_cohort.xlsx`
+  * `P:/Dataset/MO-DBT-data-curation/Cancer/mo_cancer_cohort.xlsx`
     * Stores MO patients cohort, only with records that we have image available, in series column, if "DBT" exist, means we have DBT images for that accession, the rest of blank series means we have images, but not DBT.
-  * `P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/Cancer/mo_cancer.xlsx`
+  * `P:/Dataset/MO-DBT-data-curation/Cancer/mo_cancer.xlsx`
     * Stores MO patients with DBT available in INDEX-1. Only store entries MO patients @ INDEX and INDEX-1.
 
 * **Actions:**
@@ -76,8 +76,8 @@ Incorporates metadata information (including dicom information and EHR).
 
 * **Inputs:**
   * `P:/Dataset/MO-DBT-data-curation/Cancer/mo_cancer.xlsx`
-  * `P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/Cancer/Cleaned/pathology_findings.xlsx`
-  * `P:/Dataset/R01-MO-DBT/MO-DBT-data-curation/Cancer/Cleaned/procedure_notes.xlsx`
+  * `P:/Dataset/MO-DBT-data-curation/Cancer/Cleaned/pathology_findings.xlsx`
+  * `P:/Dataset/MO-DBT-data-curation/Cancer/Cleaned/procedure_notes.xlsx`
 * **Intermediate Outputs:**
   * `P:/Dataset/MO-DBT-data-curation/Cancer/mo_cancer_subtype_info.xlsx`
   * `P:/Dataset/MO-DBT-data-curation/Cancer/mo_cancer_subtype.xlsx`
@@ -94,7 +94,7 @@ Incorporates metadata information (including dicom information and EHR).
 
 ## Move files
 ### File Movement (`move_files`)
-Handles the transferring of processed files to target directories.
+Handles the transferring of eligible files to target directories.
 
 #### **MO cancer**
 * **Inputs:**
