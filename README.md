@@ -71,7 +71,7 @@ Extracts the eligible MO cancer cohort based on the curated data.
   * Locates `INDEX` and `INDEX-1` findings.
   * Filters to extract the eligible MO cancer cohort.
 
-### 2. MO Cancer Metadata Curation (`mo_cancer_metadata`)
+### 2. MO Cancer Metadata Curation (`mo_cancer_metadata`) [MO Cancer @ INDEX-1]
 Incorporates metadata information (including dicom information and EHR).
 
 * **Inputs:**
@@ -92,13 +92,33 @@ Incorporates metadata information (including dicom information and EHR).
   * ⭐ mo_cancer_ehr: incorporate EHR information to mo_cancer.
   * ⭐ mo_cancer_ehr_@_index_1: incorporate EHR information to mo_cancer @ index_1. 
 
+### 3. MO Cancer Candidate Metadata Curation (`eligible_mo_cancer_metadata`) [MO Cancer @ INDEX-2]
+Incorporates metadata information (including dicom information and EHR).
+
+* **Inputs:**
+  * `P:/Dataset/MO-DBT-data-curation/Cancer/eligible_mo_cancer.xlsx`
+  * `P:/Dataset/MO-DBT-data-curation/Cancer/Cleaned/pathology_findings.xlsx`
+  * `P:/Dataset/MO-DBT-data-curation/Cancer/Cleaned/procedure_notes.xlsx`
+* **Intermediate Outputs:**
+  * `P:/Dataset/MO-DBT-data-curation/Cancer/eligible_mo_cancer_subtype.xlsx`
+* **Outputs:**
+  * `P:/Dataset/MO-DBT-data-curation/Cancer/eligible_mo_cancer_dicom.xlsx`
+  * `P:/Dataset/MO-DBT-data-curation/Cancer/eligible_mo_cancer_ehr.xlsx`
+  * `P:/Dataset/MO-DBT-data-curation/Cancer/eligible_mo_cancer_ehr_@_index_2.xlsx`
+
+* **Actions:**
+  * ⭐ eligible_mo_cancer_dicom: incorporate dicom to eligible_mo_cancer.
+  * ⭐ eligible_mo_cancer_ehr: incorporate EHR information to eligible_mo_cancer.
+  * ⭐ eligible_mo_cancer_ehr_@_index_2: incorporate EHR information to eligible_mo_cancer @ index_2. 
+
 ## Move files
 ### File Movement (`move_files`)
 Handles the transferring of eligible files to target directories.
 
 #### **MO cancer**
 * **Inputs:**
-  *`P:/Dataset/MO-DBT-data-curation/Cancer/mo_cancer_dicom.xlsx` (source path)
+  * `P:/Dataset/MO-DBT-data-curation/Cancer/mo_cancer_dicom.xlsx` (source FolderPath)
+  * `P:/Dataset/MO-DBT-data-curation/Cancer/eligible_mo_cancer_dicom.xlsx` (source FolderPath)
 * **Outputs:**
-  * 
+  * `J:/*/*/MO-DBT-Eligible/mo_cancer_dicom.xlsx` (FolderPath, TargetFolderPath)
 
